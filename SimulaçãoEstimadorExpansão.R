@@ -8,7 +8,6 @@ library(tibble)
 library(dplyr)
 library(magrittr)
 library(TeachingSampling)
-library(purrr)
 
 ## Garantir reprodutibilidade da simulação
 set.seed(2026)
