@@ -8,6 +8,7 @@ library(tibble)
 library(dplyr)
 library(magrittr)
 library(TeachingSampling)
+library(purrr)
 
 ## Garantir reprodutibilidade da simulação
 set.seed(2026)
@@ -26,11 +27,11 @@ populacao <- tibble(
 ### Calcular o total populacional da variável de interesse definida
 total_populacional <- sum(populacao$y_i)
 
-### Definir os tamanhos amostrais
-tamanhos_amostrais <- c(250, 500, 750, 1000, 1250)
-
 ### Definir os planos amostrais de AASCR e AASSR
 planos_amostrais <- c('AASCR', 'AASSR')
+
+### Definir os tamanhos amostrais
+tamanhos_amostrais <- c(250, 500, 750, 1000, 1250)
 
 ### Definir a quantidade de amostras, com AASCR e AASSR, para cada tamanho amostral
 R <- 5000
@@ -80,7 +81,7 @@ layout(matrix(c(
 for (tamanho in tamanhos_amostrais) {
   #### Filtrar as estimativas obtidas por tamanho amostral e pela AASCR
   amostras_estimativas_filtradas <- amostras_estimativas %>% 
-    filter(tamanho_amostral == tamanho ,plano_amostral == 'AASCR')
+    filter(tamanho_amostral == tamanho, plano_amostral == 'AASCR')
 
   #### Criar o histograma das estimativas filtradas
   hist(
@@ -105,7 +106,7 @@ layout(matrix(c(
 for (tamanho in tamanhos_amostrais) {
   #### Filtrar as estimativas obtidas por tamanho amostral e pela AASCR
   amostras_estimativas_filtradas <- amostras_estimativas %>% 
-    filter(tamanho_amostral == tamanho ,plano_amostral == 'AASSR')
+    filter(tamanho_amostral == tamanho, plano_amostral == 'AASSR')
 
   #### Criar o histograma das estimativas filtradas
   hist(
